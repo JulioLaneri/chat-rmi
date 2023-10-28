@@ -1,0 +1,34 @@
+
+<project name="rmi-client" default="run-client">
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="lib.dir" value="lib"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="java-compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" classpathref="classpath" source="1.8" target="1.8">
+        </javac>
+    </target>
+
+    <target name="run-client"> 
+        <java classname="Client.ChatClienteGUI" classpathref="classpath">
+            <classpath>
+                <pathelement location = "${build.dir}"/>
+            </classpath>
+        </java>
+    </target>
+
+
+
+
+</project>

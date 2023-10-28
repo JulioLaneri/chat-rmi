@@ -1,0 +1,35 @@
+
+<project name="RMI" default="generate-jar" basedir=".">
+
+    <property name="src.dir" location="src" />
+    <property name="build.dir" location="build" />
+    <property name="jar.name" value="RMInterfaz.jar" />
+
+
+
+    <path id="classpath">
+        <pathelement path="${build.dir}" />
+    </path>
+	
+
+    <target name="clean">
+        <delete dir="${build.dir}" />
+    </target>
+
+
+    <target name="java-compile" depends="clean">
+        <mkdir dir="${build.dir}" />
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" source="1.8" target="1.8">
+            <classpath refid="classpath" />
+        </javac>
+    </target>
+
+
+    <target name="generate-jar" depends="java-compile">
+        <jar destfile="${build.dir}/${jar.name}">
+            <fileset dir="${build.dir}" />
+        </jar>
+    </target>
+
+
+</project>
